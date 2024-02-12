@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-mdc-form-field-subscript-wrapper {
+    display: none;
+}
+
+mat-card{
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+button{
+    padding-left:5px;
+    padding-right:5px;
+    margin: 0;
+    padding:0;
+}
