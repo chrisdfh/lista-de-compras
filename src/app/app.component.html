@@ -7,7 +7,7 @@
     <div class="col-12">
       <mat-form-field class="w-100">
         <mat-label>
-          Nombre
+          Nombre de lista
         </mat-label>
         <input type="text" matInput formControlName="listaNombre">
       </mat-form-field>
@@ -17,7 +17,7 @@
         <mat-label>
           Moneda
         </mat-label>
-        <select matNativeControl>
+        <select matNativeControl formControlName="simboloMoneda">
           <option value="$">$</option>
           <option value="Bs.">Bs.</option>
         </select>
@@ -36,7 +36,7 @@
 
     <mat-form-field class="w-75">
       <mat-label>
-        Nombre
+        Producto
       </mat-label>
       <input #itemNombre matInput type="text" autocapitalize="words" formControlName="nombre">
     </mat-form-field>
