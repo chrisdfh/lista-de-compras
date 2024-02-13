@@ -56,11 +56,20 @@
 
     <div class="caja-items p-4 fs-4" [formGroupName]="'articulos'">
       <div class="p-0" [formGroupName]="i" *ngFor="let articulo of articulos.controls;let i=index">
-        <div class="d-flex justify-content-between ">
-          {{(i+1)}} - {{articulo.value.nombre}}
-          <div class="">
-            {{this.lista.value.simboloMoneda || ''}} {{articulo.value.precio}}
-            <button matSuffix class="btn">
+        <div class="d-flex justify-content-between align-items-center" style="border-bottom:1px solid lightgrey">
+          <div class="nombre" (click)="edita(i)">
+            {{(i+1)}} - {{articulo.value.nombre}}
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="px-2">
+              {{this.lista.value.simboloMoneda || ''}} {{articulo.value.precio}}
+            </div>
+            <button matSuffix mat-icon-button color="primary" cass="btn">
+              <mat-icon (click)="edita(i)">
+                edit
+              </mat-icon>
+            </button>
+            <button matSuffix mat-icon-button color="warn" cass="btn">
               <mat-icon (click)="deleteArticulo(i)">
                 delete
               </mat-icon>
