@@ -56,7 +56,25 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLocalStorage();
+
+
+    for (let [key, value] of Object.entries(localStorage)) {
+      console.log('voy => ')
+      console.log(key)
+      console.log(JSON.parse(value))
+    }
+
+    const xx = this.getKeys()
+    console.log(xx)
+
   }
+
+  getKeys(){
+    Object.keys(localStorage)
+        .reduce((obj, k) => {
+            return { ...obj, [k]: localStorage.getItem(k)}}, {});
+        }
+
 
   get articulos(): FormArray {
     return this.lista.controls['articulos'] as FormArray;

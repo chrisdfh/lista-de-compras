@@ -19,3 +19,6 @@ button{
     margin: 0;
     padding:0;
 }
+.articulo-en-lista{
+    border-bottom:1px solid lightgrey;
+}
