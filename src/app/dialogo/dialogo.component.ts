@@ -15,6 +15,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, Validators } from '@a
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-dialogo',
@@ -24,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatDialogClose,
-    MatInputModule
+    MatInputModule,
+    MatIconModule
   ],
   templateUrl: './dialogo.component.html',
   styleUrl: './dialogo.component.css',

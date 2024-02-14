@@ -1,11 +1,18 @@
 <h1 class="text-center mt-5">
-  Lista
+  <mat-icon fontSet="material-icons-outlined" color="primary">shopping_cart</mat-icon>
+  Lista de compras
+  <mat-icon fontSet="material-icons-outlined" color="primary">shopping_cart</mat-icon>
 </h1>
+<!-- <mat-icon fontSet="material-icons-outlined">add_circle</mat-icon> 
+<mat-icon fontSet="material-icons-outlined">add_circle</mat-icon>
+<mat-icon fontSet="material-icons-two-tone">add_circle</mat-icon>
+<mat-icon fontSet="material-icons-round">add_circle</mat-icon>
+<mat-icon fontSet="material-icons-sharp">add_circle</mat-icon> -->
 
 <div class="container mt-5" [formGroup]="lista">
   <div class="row">
     <div class="col-12">
-      <mat-form-field class="w-100">
+      <mat-form-field class="w-100 no-hints">
         <mat-label>
           Nombre de lista
         </mat-label>
@@ -13,7 +20,7 @@
       </mat-form-field>
     </div>
     <div class="col-12">
-      <mat-form-field class="w-25">
+      <mat-form-field class="w-25 no-hints">
         <mat-label>
           Moneda
         </mat-label>
@@ -22,11 +29,11 @@
           <option value="Bs.">Bs.</option>
         </select>
       </mat-form-field>
-      <mat-form-field class="w-75">
+      <mat-form-field class="w-75 no-hints">
         <mat-label>
           Monto Inicial
         </mat-label>
-        <input type="text" matInput formControlName="montoInicial">
+        <input type="number" matInput formControlName="montoInicial">
       </mat-form-field>
     </div>
   </div>
@@ -39,6 +46,7 @@
         Producto
       </mat-label>
       <input #itemNombre matInput type="text" autocapitalize="words" formControlName="nombre">
+      <mat-error>Dato Requerido</mat-error>
     </mat-form-field>
     <mat-form-field class="w-25">
       <mat-label>
@@ -46,10 +54,11 @@
       </mat-label>
       <input matInput type="number" formControlName="precio" (keyup.enter)="agregaArticulo()">
       <button matSuffix class="btn">
-        <mat-icon (click)="agregaArticulo()">
-          add
+        <mat-icon (click)="agregaArticulo()" fontSet="material-icons-outlined" color="primary">
+          new_label
         </mat-icon>
       </button>
+      <mat-error>Dato debe ser numérico</mat-error>
     </mat-form-field>
 
 
@@ -65,12 +74,12 @@
               {{this.lista.value.simboloMoneda || ''}} {{articulo.value.precio}}
             </div>
             <button matSuffix mat-icon-button color="primary" cass="btn" (click)="edita(i)">
-              <mat-icon>
+              <mat-icon fontSet="material-icons-outlined">
                 edit
               </mat-icon>
             </button>
             <button matSuffix mat-icon-button color="warn" cass="btn" (click)="deleteArticulo(i)">
-              <mat-icon>
+              <mat-icon fontSet="material-icons-outlined">
                 delete
               </mat-icon>
             </button>
@@ -79,13 +88,13 @@
       </div>
     </div>
 
-    <mat-form-field class="w-50">
+    <mat-form-field class="w-50 no-hints">
       <mat-label>
         Suma
       </mat-label>
       <input type="number" matInput readonly formControlName="suma">
     </mat-form-field>
-    <mat-form-field class="w-50">
+    <mat-form-field class="w-50 no-hints">
       <mat-label>
         Restante
       </mat-label>

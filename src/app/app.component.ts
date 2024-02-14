@@ -6,8 +6,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
 
+import { RouterOutlet } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -15,7 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog'
+import { MatDialog } from '@angular/material/dialog';
 import { DialogoComponent } from './dialogo/dialogo.component';
 
 @Component({
@@ -34,14 +34,11 @@ import { DialogoComponent } from './dialogo/dialogo.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-
 export class AppComponent implements OnInit {
   lista: FormGroup;
   @ViewChild('itemNombre') itemNombre!: ElementRef;
 
-  constructor(
-    private fb: FormBuilder,
-    private dialogo: MatDialog) {
+  constructor(private fb: FormBuilder, private dialogo: MatDialog) {
     this.lista = this.fb.group({
       listaNombre: new FormControl('Lista', Validators.required),
       simboloMoneda: new FormControl('$'),
@@ -61,7 +58,6 @@ export class AppComponent implements OnInit {
     //   console.log(key)
     //   console.log(JSON.parse(value))
     // }
-
   }
 
   get articulos(): FormArray {
@@ -95,8 +91,8 @@ export class AppComponent implements OnInit {
     let resto;
     let suma = await this.sumaMontos();
     if (
-      this.lista.value.montoInicial != '' ||
-      this.lista.value.montoInicial != 0
+      !(this.lista.value.montoInicial == null ||
+      this.lista.value.montoInicial == 0)
     ) {
       resto = this.lista.value.montoInicial - suma;
     } else {
@@ -119,10 +115,9 @@ export class AppComponent implements OnInit {
   }
 
   agregaArticulo(): void {
-
-    if (this.lista.status != "VALID"){
-      this.lista.markAllAsTouched()
-      return
+    if (this.lista.status != 'VALID') {
+      this.lista.markAllAsTouched();
+      return;
     }
 
     const art: articulo = {
@@ -153,7 +148,7 @@ export class AppComponent implements OnInit {
     const listaCompras = window.localStorage.getItem(storageName);
     if (listaCompras != null) {
       const dataLocal = JSON.parse(listaCompras);
-      this.loadLocalStorage(dataLocal);
+      this.loadLista(dataLocal);
     }
   }
 
@@ -162,7 +157,7 @@ export class AppComponent implements OnInit {
     this.articulos.clear();
   }
 
-  loadLocalStorage(data: Lista) {
+  loadLista(data: Lista) {
     this.lista.reset();
     this.articulos.clear();
 
@@ -173,16 +168,23 @@ export class AppComponent implements OnInit {
     });
   }
 
-  edita(i:number){
-    this.dialogo.open(DialogoComponent,{data:this.articulos.at(i).getRawValue() ,maxWidth: '450px', width: '95%', maxHeight: '200px', height: '90%'}).afterClosed().subscribe(
-      articuloEditado=>{
-        if(articuloEditado){
-          console.log(articuloEditado)
-          this.articulos.at(i).patchValue(articuloEditado)
-          this.updateRestante()
+  edita(i: number) {
+    this.dialogo
+      .open(DialogoComponent, {
+        data: this.articulos.at(i).getRawValue(),
+        maxWidth: '450px',
+        width: '95%',
+        maxHeight: '200px',
+        height: '90%',
+      })
+      .afterClosed()
+      .subscribe((articuloEditado) => {
+        if (articuloEditado) {
+          console.log(articuloEditado);
+          this.articulos.at(i).patchValue(articuloEditado);
+          this.updateRestante();
         }
-      }
-    )
+      });
   }
 }
 
@@ -201,4 +203,3 @@ interface Lista {
   precio: number;
   articulos: articulo[];
 }
-

@@ -1,6 +1,7 @@
 p{
-    background-color: lightblue;
-    color:darkblue;
+    background-color: #673ab7;
+    color:white;
+    font-weight: bold;
     font-size: 2em;
     text-align: center;
 }
